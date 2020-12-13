@@ -20,7 +20,7 @@ var lb = {};
  */
 client.on('ready', () => {
     counter = 1;
-    lb = {};
+    lb = {'Count von Count': 0};
     console.log('Online!');
 })
 
@@ -32,7 +32,7 @@ client.on('message', (msg) => {
         for (let key in Object.keys(lb)) {
             board = board.concat(`${key}: ${lb[key]} ruins\n`);
         }
-        msg.channel.send(`Here are the current stats\n: ${board}`);
+        msg.channel.send(`Here are the current stats: \`\`\`\n${board}\n\`\`\``);
     } else {
         var num = Number.parseInt(msg.content);
         if (Number.isInteger(num)) {
@@ -49,6 +49,12 @@ client.on('message', (msg) => {
                     high_score = counter - 1;
                 }
                 var stem = fails.failMsg();
+                let user = msg.author.username.concat(msg.author.discriminator);
+                if (Object.keys(lb).includes(user)) {
+                    lb[user] += 1;
+                } else {
+                    lb[user] = 1;
+                }
                 msg.reply(`${stem} The current high score is ${high_score}.`);
                 counter = 1;
             }
