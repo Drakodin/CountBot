@@ -6,3 +6,6 @@ This project uses dotenv. Where you see `process.env.DISCORD_TOKEN`, substitute 
 
 ## Art
 I drew it in Krita.
+
+## Status
+This is an internal project. The bot does ***not*** have a database backing it so it cannot serve multiple servers except the one it has been deployed to. 
